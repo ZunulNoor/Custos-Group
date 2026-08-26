@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custos Group — GSAP Concept</title>
+    <meta name="description"
+      content="Custos Group — cybersecurity talent, vetted before you need it.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <style>
+:root{
+  --navy:#0F1A46; --navy2:#091331; --cream:#E3DFD6; --gold:#C09964;
+  --muted:#9fa8bc; --ink:#121827; --line:rgba(192,153,100,.28);
+  --max:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{background:var(--navy);color:var(--cream);font-family:"Public Sans",sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.serif{font-family:"Fraunces",serif;font-weight:500}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.wrap{width:min(var(--max),calc(100% - 96px));margin:auto}
+section{position:relative;overflow:hidden}
+.nav{
+ position:fixed;inset:0 0 auto;z-index:100;height:82px;
+ display:flex;align-items:center;background:rgba(15,26,70,.72);
+ border-bottom:1px solid rgba(227,223,214,.12);backdrop-filter:blur(16px)
+}
+      .lockup-a {
+        fill: #fff;
+      }
+      .nav-logo svg{height:25px;width:auto}
+
+      .lockup-b {
+        fill: #c09964;
+      }
+.nav-inner{width:min(var(--max),calc(100% - 96px));margin:auto;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;letter-spacing:.16em;font-size:18px}
+/* .logo i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:9px} */
+.navlinks{display:flex;gap:28px;font-size:13px;color:#c2c7d4}
+.navlinks a{position:relative}.navlinks a:after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:1px;background:var(--gold);transition:.3s}.navlinks a:hover:after{width:100%}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:6px;font-weight:600;font-size:14px;border:1px solid transparent;transition:.3s}
+.btn.gold{background:var(--gold);color:var(--navy)}.btn.gold:hover{transform:translateY(-2px);background:#d0aa76}
+.btn.line{border-color:rgba(227,223,214,.38)}.btn.line:hover{border-color:var(--gold);color:var(--gold)}
+.nav .btn{min-height:40px;padding:0 17px;font-size:12px}
+
+.hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;padding:140px 0 90px}
+.hero:before{content:"";position:absolute;width:700px;height:700px;border:1px solid rgba(192,153,100,.12);border-radius:50%;right:-180px;top:50%;transform:translateY(-50%);box-shadow:0 0 0 80px rgba(192,153,100,.025),0 0 0 160px rgba(192,153,100,.018)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+.eyebrow{font-size:11px;letter-spacing:.2em;color:var(--gold);font-weight:600;text-transform:uppercase}
+.hero h1{font-size:clamp(56px,7vw,98px);line-height:.94;letter-spacing:-.045em;max-width:850px;margin:20px 0 30px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-copy{max-width:570px;color:#b7bfce;font-size:17px;line-height:1.75}
+.hero-actions{display:flex;gap:12px;margin-top:34px}
+.hero-meta{display:flex;gap:25px;margin-top:60px;color:#7f8aa1;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.hero-visual{height:600px;position:relative}
+.orbit{position:absolute;inset:35px;border:1px solid rgba(192,153,100,.32);border-radius:50%;transform:rotate(-20deg)}
+.orbit.two{inset:100px;transform:rotate(35deg);border-color:rgba(227,223,214,.13)}
+.visual-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:180px;height:180px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center}
+.visual-core:before{content:"";position:absolute;inset:18px;border:1px solid rgba(192,153,100,.35);border-radius:50%}
+.signal{position:absolute;padding:10px 13px;border:1px solid rgba(227,223,214,.15);background:rgba(9,19,49,.72);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.s1{top:90px;right:25px}.s2{bottom:110px;left:15px}.s3{top:250px;right:-5px}.s4{bottom:35px;right:100px}
+.scrollcue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.2em;color:#8993a7;text-transform:uppercase}
+
+.cream{background:var(--cream);color:var(--ink)}
+.cream .eyebrow{color:#8b693e}
+.cream .muted{color:#596171}
+.section{padding:150px 0}
+.section-title{font-size:clamp(48px,6vw,78px);line-height:.98;letter-spacing:-.035em;max-width:900px}
+.section-intro{max-width:620px;color:#667080;font-size:16px;line-height:1.8;margin-top:25px}
+.bench-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:65px}
+.bench-head .section-intro{margin:0}
+.bench-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.person{background:var(--navy);color:var(--cream);min-height:420px;padding:30px;position:relative;overflow:hidden;transition:transform .4s}
+.person:hover{transform:translateY(-8px)}
+.person:before{content:"";position:absolute;right:-90px;bottom:-90px;width:240px;height:240px;border:1px solid rgba(192,153,100,.3);border-radius:50%}
+.person .id{font-size:10px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+.person h3{font-family:"Fraunces";font-size:31px;line-height:1.05;font-weight:500;margin-top:55px;max-width:250px}
+.person .rule{height:1px;background:var(--gold);margin:24px 0}
+.person p{font-size:13px;color:#aeb6c5;line-height:1.75}
+.person .bottom{position:absolute;left:30px;right:30px;bottom:28px;display:flex;justify-content:space-between;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#8d98ac}
+.person .bottom b{color:var(--gold)}
+.bench-cta{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;text-decoration:none;border:1px dashed rgba(192,153,100,.35)}
+.bench-cta:hover{border-color:var(--gold)}
+.bench-cta h3{font-family:"Fraunces";font-size:24px;font-weight:500;margin:0;color:var(--gold)}
+.bench-cta .resource-arrow{font-size:28px;color:var(--gold);margin-top:18px}
+
+.wins{background:#000;padding:155px 0}
+.wins-grid{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+.wins-copy p{color:#9fa8bc;line-height:1.8;margin-top:25px;max-width:400px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:35px}
+.stat{border-top:1px solid var(--line);padding-top:22px}
+.stat-num{font-family:"Fraunces";font-size:clamp(60px,7vw,100px);line-height:.9;color:var(--gold);letter-spacing:-.05em}
+.stat-label{font-weight:600;margin-top:18px}.stat-sub{color:#8e99ad;font-size:13px;line-height:1.6;margin-top:7px}
+
+.how{background:var(--cream);color:var(--ink)}
+.how-layout{display:grid;grid-template-columns:.75fr 1.25fr;gap:100px}
+.step{padding:35px 0;border-top:1px solid rgba(15,26,70,.2);display:grid;grid-template-columns:80px 1fr;gap:20px}
+.step:last-child{border-bottom:1px solid rgba(15,26,70,.2)}
+.step-no{font-family:ui-monospace;font-size:13px;color:#8b693e;letter-spacing:.12em}
+.step h3{font-family:"Fraunces";font-size:30px;font-weight:500}.step p{color:#606979;line-height:1.75;margin-top:10px;max-width:650px}
+.loop{margin-top:50px;height:170px;border:1px solid rgba(15,26,70,.2);position:relative;display:grid;place-items:center}
+.loop-track{position:absolute;width:85%;height:1px;background:#b29a7a}.loop-dot{width:18px;height:18px;border-radius:50%;background:var(--gold);position:absolute;box-shadow:0 0 0 10px rgba(192,153,100,.12)}
+
+.resources{background:var(--navy);padding:140px 0}
+.resource-list{margin-top:65px;border-top:1px solid var(--line)}
+.resource{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;padding:27px 0;border-bottom:1px solid var(--line);transition:.35s}
+.resource:hover{padding-left:18px;background:rgba(192,153,100,.04)}
+.resource-arrow{color:var(--gold);font-size:18px}.resource h3{font-family:"Fraunces";font-size:31px;font-weight:500}.resource span{color:#8490a7;font-size:12px}
+
+.about{background:var(--cream);color:var(--ink)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.about-copy p{color:#5d6676;font-size:17px;line-height:1.85;margin-top:30px;max-width:570px}
+.quote{margin-top:40px;border-left:2px solid var(--gold);padding-left:25px;font-family:"Fraunces";font-size:24px;line-height:1.45;color:var(--navy)}
+.portrait{height:560px;background:var(--navy);position:relative;overflow:hidden}
+
+.final{background:var(--navy);padding:160px 0;text-align:center}
+.final .section-title{margin:auto;max-width:850px}
+.final p{max-width:560px;margin:25px auto 35px;color:#9da7ba;line-height:1.75}
+.testimonials{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:80px auto 120px;max-width:1000px;text-align:left}
+.t-card{border:1px solid rgba(227,223,214,.14);padding:35px;min-height:220px}
+.t-mark{font-family:"Fraunces";font-size:54px;color:var(--gold);line-height:.7}
+.t-card p{margin:30px 0 22px;font-size:16px;color:#b3bbca}
+.t-card small{color:var(--gold);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+
+footer{background:#000;padding:70px 0 35px;border-top:1px solid rgba(192,153,100,.2)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:70px}
+.footer-tag{font-family:"Fraunces";font-size:27px;line-height:1.2;max-width:370px;color:#fff}.footer-grid h4{font-size:10px;color:var(--gold);letter-spacing:.18em;text-transform:uppercase}.footer-grid ul{list-style:none;display:grid;gap:11px;margin-top:18px;color:#ccc;font-size:13px}
+.legal{border-top:1px solid rgba(255,255,255,.15);margin-top:55px;padding-top:22px;display:flex;justify-content:space-between;color:#999;font-size:11px}
+
+@media(max-width:950px){
+ .wrap,.nav-inner{width:min(100% - 48px,var(--max))}
+ .navlinks{display:none}.hero-grid,.wins-grid,.how-layout,.about-grid{grid-template-columns:1fr;gap:55px}
+ .hero-visual{height:470px}.bench-grid,.stats,.testimonials{grid-template-columns:1fr}
+ .bench-head{display:block}.bench-head .section-intro{margin-top:20px}.resource{grid-template-columns:auto 1fr auto}
+ .section,.wins,.resources,.final{padding:100px 0}
+}
+@media(max-width:600px){
+ .hero{padding-top:125px}.hero h1{font-size:56px}.hero-actions{flex-direction:column;align-items:stretch}
+ .hero-meta{flex-wrap:wrap;margin-top:40px}.hero-visual{height:390px}
+ .person{min-height:390px}.section-title{font-size:49px}.resource h3{font-size:24px}
+ .resource span{display:none}.footer-grid{grid-template-columns:1fr;gap:35px}.legal{display:block}.legal span{display:block;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--obsidian);border-bottom:1px solid rgba(192,153,100,.12);padding:18px 0;overflow:hidden}
+.marquee-track{display:flex;gap:56px;white-space:nowrap;animation:slide 42s linear infinite;width:max-content}
+.marquee span{font-size:13.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
+.marquee b{color:var(--gold);font-weight:500}
+@keyframes slide{to{transform:translateX(-50%)}}
+</style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="nav-logo" href="#" aria-label="Custos Group"><svg
+            id="lg_lockup" data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1264.03 112.02">
+            <g>
+              <path class="lockup-a"
+                d="M745.02,56.94c0-31.94,23.15-56.63,56.31-56.63,18.51,0,23.77,6.64,33.8,2.16l4.62,30.71c-9.88-10.49-20.83-17.28-35.64-17.28-19.75,0-35.03,14.66-35.03,41.19,0,24.23,15.73,39.5,36.72,39.5,6.02,0,12.19-.92,17.9-2.93v-16.35c0-10.34-1.24-14.19-5.71-20.22h31.94c-4.48,6.48-5.4,11.57-5.4,22.07v4.48c0,6.94,1.24,12.04,3.08,16.67-12.35,6.64-28.7,11.72-44.59,11.72-33.49,0-58.02-21.75-58.02-55.08Z" />
+              <path class="lockup-a"
+                d="M868.1,88.56V23.3c0-10.49-2-14.66-7.56-21.29h45.98c24.69,0,39.35,12.04,39.35,31.01,0,13.58-8.34,24.07-20.83,28.86l19.75,32.09c4.48,7.25,8.48,12.35,12.65,16.05h-28.08l-26.08-44.28h-12.96v22.83c0,10.49,1.7,15.12,6.95,21.45h-36.11c5.24-6.32,6.94-10.96,6.94-21.45ZM890.32,16.66v35.18h11.88c13.11,0,21.45-6.48,21.45-18.05,0-10.8-8.03-17.13-21.14-17.13h-12.19Z" />
+              <path class="lockup-a"
+                d="M1009.26,112.02c-30.55,0-55.23-22.83-55.23-56.01S979.02,0,1009.89,0s55.23,22.83,55.23,56.01-24.99,56.01-55.86,56.01ZM1009.26,96.59c17.75,0,31.48-14.19,31.48-40.42s-13.43-40.42-30.86-40.42-31.48,14.19-31.48,40.42,13.58,40.42,30.86,40.42Z" />
+              <path class="lockup-a"
+                d="M1076.18,68.46V22.17c0-10.49-1.7-15.12-6.95-21.45h36.57c-5.25,6.32-6.95,10.96-6.95,21.45v45.82c0,17.59,10.64,26.54,24.68,26.54s25-8.8,25-26.85V22.17c0-10.49-1.86-14.97-7.41-21.45h31.64c-5.56,6.48-7.41,10.96-7.41,21.45v44.59c0,28.7-18.36,43.98-44.59,43.98s-44.59-15.43-44.59-42.28Z" />
+              <path class="lockup-a"
+                d="M1185.79,87.29V22.17c0-10.49-2-14.81-7.56-21.45h44.75c25.45,0,41.04,13.27,41.04,32.87,0,20.67-16.82,33.95-42.27,33.95h-13.27v19.75c0,10.49,1.69,14.97,7.4,21.45h-37.03c5.24-6.32,6.94-10.96,6.94-21.45ZM1208.48,15.38v38.11h10.96c13.57,0,22.07-7.25,22.07-19.13s-8.34-18.98-21.75-18.98h-11.27Z" />
+            </g>
+            <g>
+              <path class="lockup-a"
+                d="M54.46.31c18.2,0,24.38,6.64,33.79,2.16l4.48,30.71c-9.41-10.03-19.44-17.28-33.63-17.28-20.99,0-35.03,16.66-35.03,40.42,0,25.77,16.67,40.27,35.95,40.27,12.8,0,23.6-5.55,32.87-12.19l-1.69,17.43c-8.95,6.17-21.61,10.18-35.03,10.18C24.23,112.02,0,89.34,0,57.09S23.6.31,54.46.31Z" />
+              <path class="lockup-a"
+                d="M105.97,69.74V23.45c0-10.49-1.7-15.12-6.95-21.45h36.57c-5.25,6.32-6.95,10.96-6.95,21.45v45.82c0,17.59,10.64,26.54,24.68,26.54s25-8.8,25-26.85V23.45c0-10.49-1.86-14.97-7.41-21.45h31.64c-5.56,6.48-7.41,10.96-7.41,21.45v44.59c0,28.7-18.36,43.98-44.59,43.98s-44.59-15.43-44.59-42.28Z" />
+              <path class="lockup-a"
+                d="M318.1,88.56V16.35h-7.87c-10.8,0-18.67,3.08-29.78,11.72l4.16-26.07h89.65l4.16,26.07c-11.27-8.64-18.98-11.72-29.78-11.72h-7.87v72.21c0,10.49,1.85,14.97,7.4,21.45h-37.49c5.56-6.48,7.4-10.96,7.4-21.45Z" />
+              <path class="lockup-a"
+                d="M431.33,112.02c-30.55,0-55.23-22.83-55.23-56.01S401.09,0,431.95,0s55.23,22.83,55.23,56.01-24.99,56.01-55.86,56.01ZM431.33,96.59c17.75,0,31.48-14.19,31.48-40.42s-13.43-40.42-30.86-40.42-31.48,14.19-31.48,40.42,13.58,40.42,30.86,40.42Z" />
+              <path class="lockup-a"
+                d="M497.94,110.17l-5.4-28.39c15.43,11.73,27,16.82,38.11,16.82,8.64,0,15.9-5.4,15.59-14.04-.31-22.22-52.16-15.58-52.77-53.08-.61-17.43,12.8-30.86,32.71-30.86,13.58,0,21.91,6.17,30.71,1.08l4.79,26.39c-12.35-8.64-23.91-14.04-33.33-14.04-8.64,0-14.04,5.56-14.04,13.27.62,23.3,52.3,15.27,53.24,52,.3,18.98-14.66,32.09-36.26,32.09-15.59,0-23.77-7.25-33.33-1.23Z" />
+              <path class="lockup-a"
+                d="M210.46,110.17l-5.4-28.39c15.43,11.73,27,16.82,38.11,16.82,8.64,0,15.9-5.4,15.59-14.04-.31-22.22-52.16-15.58-52.77-53.08-.61-17.43,12.8-30.86,32.71-30.86,13.58,0,26.7,6.17,35.49,1.08v26.39c-12.35-8.64-23.91-14.04-33.33-14.04-8.64,0-14.04,5.56-14.04,13.27.62,23.3,52.3,15.27,53.24,52,.3,18.98-14.66,32.09-36.26,32.09-15.59,0-23.77-7.25-33.33-1.23Z" />
+            </g>
+            <path class="lockup-b"
+              d="M714.37,109.83v-4.62l-56.23-27.31c.74-1.64,1.42-3.34,1.98-5.04l54.24,18.01v-29.2l-51.53-5.72c-.06-1.42.13-4.86-.04-6.28l51.57-.63v-30.09l-54.12,12.13c-.68-1.25-2.06-6.17-2.85-7.3l56.98-18.03V1.12h-108.77v4.62c22.65,3.57,43.31,23.35,43.31,46.62,0,4.87-.74,9.57-2.15,13.93l-12.17-17.95v-.62l6.17-3.45v-4.58h-45.52v15.06c2.38-1.36,5.1-2.09,8.1-2.09,3.79,0,7.19,1.25,9.97,3.34v.06l-7.76,21.63.06,32.16h108.77ZM605.66,98.9" />
+          </svg></a>
+        <!-- <a class="logo" href="#"><img style="width: 200px; object-fit: contain" src="/Logo-2-01.png" alt=""></a> -->
+        <div class="navlinks">
+          <a href="#bench">The Bench</a><a href="#talent">For Talent</a><a
+            href="#how">How It Works</a>
+          <a href="#wins">Our Wins</a><a href="#about">About</a><a
+            href="#resources">Resources</a>
+        </div>
+        <a class="btn gold" href="#connect">Let's Connect</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-copy-block">
+            <h1 class="serif">The seat's still open.<br><em>We already know</em>
+              who fills it.</h1>
+            <p class="hero-copy">Custos keeps a bench of vetted cybersecurity
+              professionals, so when a role opens on your team, the search is
+              already done. Fewer names. Better names. People we'd vouch
+              for.</p>
+            <div class="hero-actions"><a class="btn gold" href="#bench">Find
+                your hire</a><a class="btn line" href="#how">How it works
+                →</a></div>
+            <div class="hero-meta mono"><span>Vetted before
+                need</span><span>Cybersecurity only</span><span>Atlanta ·
+                Remote</span></div>
+          </div>
+          <div class="hero-visual">
+            <div class="orbit"></div><div class="orbit two"></div>
+            <div class="visual-core"><div class="core-mark">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  version="1.1"
+                  width="60"
+                  height="60"
+                  viewBox="0 0 182 168"
+                  preserveAspectRatio="xMidYMid meet"><path
+                    d="M0 0 C15.88955127 -0.02332924 31.77909794 -0.0409793 47.66866207 -0.05181217 C55.04595956 -0.05697508 62.42324643 -0.06401767 69.80053711 -0.07543945 C76.2283218 -0.08538646 82.6560988 -0.09185347 89.08389097 -0.09408849 C92.48939278 -0.09539557 95.89487258 -0.09848125 99.30036736 -0.10573006 C103.09601041 -0.11293606 106.89160712 -0.11399113 110.68725586 -0.11352539 C112.3930481 -0.1189183 112.3930481 -0.1189183 114.13330078 -0.12442017 C115.67515297 -0.12235817 115.67515297 -0.12235817 117.24815369 -0.12025452 C118.14690185 -0.12117631 119.04565001 -0.1220981 119.97163296 -0.12304783 C122 0 122 0 123 1 C123.04080783 2.99958364 123.04254356 5.00045254 123 7 C107.58280022 12.2198793 92.13841324 17.27662153 76.55981445 21.99194336 C70.88361963 23.72453407 65.3847875 25.49654616 60 28 C60.99 30.475 60.99 30.475 62 33 C74.65899913 31.22595598 87.0491868 28.07099983 99.4831543 25.16259766 C102.4239136 24.47615921 105.36614604 23.7963459 108.30859375 23.1171875 C109.20758896 22.90472382 110.10658417 22.69226013 111.03282166 22.47335815 C112.29552635 22.18272995 112.29552635 22.18272995 113.58374023 21.88623047 C114.31809799 21.71461395 115.05245575 21.54299744 115.80906677 21.36618042 C118 21 118 21 123 21 C123 32.55 123 44.1 123 56 C94.29 56.495 94.29 56.495 65 57 C65 58.65 65 60.3 65 62 C65.68238235 62.07294785 66.36476471 62.14589569 67.06782532 62.22105408 C74.15689795 62.97954794 81.24545971 63.74268473 88.33374023 64.50854492 C90.98071278 64.79429764 93.62787351 65.07810582 96.27514648 65.36108398 C100.07570173 65.76754906 103.87577617 66.17827104 107.67578125 66.58984375 C108.86335526 66.71592514 110.05092926 66.84200653 111.27449036 66.97190857 C112.37540512 67.09195755 113.47631989 67.21200653 114.6105957 67.33569336 C115.58100296 67.4400621 116.55141022 67.54443085 117.55122375 67.65196228 C120 68 120 68 123 69 C123 80.22 123 91.44 123 103 C110.625 99.625 110.625 99.625 106.06958008 98.09887695 C105.04935257 97.75875076 104.02912506 97.41862457 102.97798157 97.06819153 C101.38979866 96.53363594 101.38979866 96.53363594 99.76953125 95.98828125 C98.65309738 95.61519333 97.53666351 95.24210541 96.38639832 94.85771179 C92.86080662 93.67881701 89.33663793 92.49573262 85.8125 91.3125 C83.40569222 90.50688278 80.99879203 89.70154159 78.59179688 88.89648438 C72.72679294 86.93417793 66.86294788 84.96844042 61 83 C60.67 84.65 60.34 86.3 60 88 C60.83523193 88.25652344 61.67046387 88.51304688 62.53100586 88.77734375 C66.33140098 90.11680316 69.89761422 91.78198284 73.50390625 93.5625 C74.57264732 94.08432861 74.57264732 94.08432861 75.66297913 94.61669922 C77.96446429 95.74113853 80.26347145 96.87054773 82.5625 98 C85.71667355 99.5432528 88.87202167 101.08409714 92.02734375 102.625 C92.80182861 103.00366211 93.57631348 103.38232422 94.37426758 103.77246094 C101.62779637 107.31558118 108.91352198 110.78804681 116.22094727 114.21875 C121.89674726 116.89674726 121.89674726 116.89674726 123 118 C123 119.98 123 121.96 123 124 C82.08 124 41.16 124 -1 124 C-1 79.43085106 -1 79.43085106 7 63 C3.51443359 61.42527089 0.82109368 60.74682495 -3 60.8125 C-3.825 60.81894531 -4.65 60.82539062 -5.5 60.83203125 C-8.07295815 61.00490188 -10.48552833 61.438734 -13 62 C-13.02684312 59.18743719 -13.04676188 56.37512759 -13.0625 53.5625 C-13.07087891 52.76005859 -13.07925781 51.95761719 -13.08789062 51.13085938 C-13.0965143 49.08704779 -13.0522815 47.04316098 -13 45 C-12 44 -12 44 -9.90562439 43.87974548 C-8.98407059 43.88196609 -8.06251678 43.88418671 -7.11303711 43.88647461 C-6.07203354 43.88655014 -5.03102997 43.88662567 -3.95848083 43.88670349 C-2.8262056 43.89186478 -1.69393036 43.89702606 -0.52734375 43.90234375 C0.62543564 43.9037587 1.77821503 43.90517365 2.96592712 43.90663147 C6.66481064 43.91224995 10.36363464 43.92480558 14.0625 43.9375 C16.56315017 43.94251262 19.06380129 43.94707594 21.56445312 43.95117188 C27.70965588 43.96222538 33.85482369 43.97898148 40 44 C40.1171875 46.8828125 40.1171875 46.8828125 40 50 C38.125 51.875 38.125 51.875 36 53 C35.34 53 34.68 53 34 53 C37.0209354 59.52522047 40.76610248 65.19623036 45 71 C49.04732038 61.64057162 47.2360712 51.34047825 44 42 C37.57867737 26.97575155 26.54746481 17.54246616 11.75 11.1875 C7.54928721 9.52471786 3.38175714 8.09543929 -1 7 C-0.67 4.69 -0.34 2.38 0 0 Z"
+                    fill="#C09965" transform="translate(32,20)" /><path
+                    d="M0 0 C0.33 0 0.66 0 1 0 C0.49803974 6.90195362 -0.98231667 10.2102125 -4 17 C-4.33 29.87 -4.66 42.74 -5 56 C34.27 56 73.54 56 114 56 C114 54.68 114 53.36 114 52 C112.02 51.505 112.02 51.505 110 51 C110 50.34 110 49.68 110 49 C108.02 48.505 108.02 48.505 106 48 C106 47.34 106 46.68 106 46 C113.78740157 48.35433071 113.78740157 48.35433071 117 51 C117 52.98 117 54.96 117 57 C76.08 57 35.16 57 -7 57 C-7 12.89285714 -7 12.89285714 0 0 Z"
+                    fill="#B49870" transform="translate(38,87)" /><path
+                    d="M0 0 C0 11.55 0 23.1 0 35 C-28.71 35.495 -28.71 35.495 -58 36 C-58 37.65 -58 39.3 -58 41 C-51.4 41.66 -44.8 42.32 -38 43 C-38 43.33 -38 43.66 -38 44 C-44.93 44 -51.86 44 -59 44 C-59 40.7 -59 37.4 -59 34 C-40.19 34 -21.38 34 -2 34 C-2 23.44 -2 12.88 -2 2 C-4.31 2 -6.62 2 -9 2 C-5.53785351 -0.05164237 -4.40610765 0 0 0 Z"
+                    fill="#B39A73" transform="translate(155,41)" /><path
+                    d="M0 0 C1 1 1 1 1.0625 4.0625 C1.041875 5.031875 1.02125 6.00125 1 7 C-2.93257916 8.36876382 -6.87174367 9.71747832 -10.8125 11.0625 C-11.93205078 11.45244141 -13.05160156 11.84238281 -14.20507812 12.24414062 C-15.81479492 12.79038086 -15.81479492 12.79038086 -17.45703125 13.34765625 C-18.44678955 13.68804932 -19.43654785 14.02844238 -20.45629883 14.37915039 C-23 15 -23 15 -26 14 C-25.34 14 -24.68 14 -24 14 C-24 13.34 -24 12.68 -24 12 C-23.32453125 11.80664062 -22.6490625 11.61328125 -21.953125 11.4140625 C-21.06109375 11.15367188 -20.1690625 10.89328125 -19.25 10.625 C-18.36828125 10.36976562 -17.4865625 10.11453125 -16.578125 9.8515625 C-14.23919428 9.0790066 -12.16557438 8.16374324 -10 7 C-10.66 6.01 -11.32 5.02 -12 4 C-13.0828125 4.309375 -13.0828125 4.309375 -14.1875 4.625 C-17.44641585 5.05952211 -19.08304504 4.41680669 -22 3 C-22 2.67 -22 2.34 -22 2 C-14.63316497 0.00221423 -7.62950257 -0.48819734 0 0 Z"
+                    fill="#C29A66" transform="translate(154,20)" /><path
+                    d="M0 0 C0.99 0 1.98 0 3 0 C3 11.22 3 22.44 3 34 C-3.7737585 32.15261132 -10.38935758 30.30148292 -17 28 C-14 26 -14 26 -11.4375 26.3125 C-9 27 -9 27 -7 28 C-7 28.66 -7 29.32 -7 30 C-6.05125 29.979375 -5.1025 29.95875 -4.125 29.9375 C-1 30 -1 30 1 31 C0.505 15.655 0.505 15.655 0 0 Z"
+                    fill="#B69A68" transform="translate(152,89)" /><path
+                    d="M0 0 C5.56664924 1.66086912 10.65786353 4.11071736 15.875 6.625 C16.75414062 7.04523438 17.63328125 7.46546875 18.5390625 7.8984375 C20.69422878 8.9291692 22.84779922 9.96309426 25 11 C21.47940432 12.17353189 18.693507 12.20146402 15 12 C14.34 11.34 13.68 10.68 13 10 C13 9.01 13 8.02 13 7 C12.28972656 6.95101562 11.57945312 6.90203125 10.84765625 6.8515625 C9.92855469 6.77679688 9.00945312 6.70203125 8.0625 6.625 C6.68771484 6.52058594 6.68771484 6.52058594 5.28515625 6.4140625 C4.15400391 6.20910156 4.15400391 6.20910156 3 6 C2.67 5.34 2.34 4.68 2 4 C2.33 3.34 2.66 2.68 3 2 C2.01 1.67 1.02 1.34 0 1 C0 0.67 0 0.34 0 0 Z"
+                    fill="#B5986F" transform="translate(119,121)" /><path
+                    d="M0 0 C0.99 1.32 1.98 2.64 3 4 C-0.44836408 7.44836408 -5.35932979 8.24252408 -9.9375 9.6875 C-10.95263672 10.02072266 -11.96777344 10.35394531 -13.01367188 10.69726562 C-13.98755859 11.00728516 -14.96144531 11.31730469 -15.96484375 11.63671875 C-16.8580835 11.92248779 -17.75132324 12.20825684 -18.67163086 12.50268555 C-21 13 -21 13 -24 12 C-23.34 12 -22.68 12 -22 12 C-22 11.34 -22 10.68 -22 10 C-20.96939453 9.70996094 -20.96939453 9.70996094 -19.91796875 9.4140625 C-18.56638672 9.02347656 -18.56638672 9.02347656 -17.1875 8.625 C-16.29417969 8.36976562 -15.40085938 8.11453125 -14.48046875 7.8515625 C-11.79532104 7.04733339 -11.79532104 7.04733339 -9 5 C-7 5 -5 5 -3 5 C-0.7763932 3.0745356 -0.7763932 3.0745356 0 0 Z"
+                    fill="#BBA078" transform="translate(152,22)" /><path
+                    d="M0 0 C0.99 0.33 1.98 0.66 3 1 C3 1.66 3 2.32 3 3 C3.99 3.33 4.98 3.66 6 4 C7.31640625 5.59375 7.31640625 5.59375 8.5625 7.5 C10.31619395 10.25536594 10.31619395 10.25536594 13 12 C13.309375 12.969375 13.61875 13.93875 13.9375 14.9375 C14.74744122 18.2680443 14.74744122 18.2680443 18 20 C17.67 20.33 17.34 20.66 17 21 C16.95936168 22.66617115 16.957279 24.33388095 17 26 C15.23607816 23.35411724 13.86736992 20.76872392 12.4375 17.9375 C9.55020101 12.54978575 5.99898671 8.37024207 1.7578125 3.99609375 C0 2 0 2 0 0 Z"
+                    fill="#B69E76" transform="translate(61,39)" /><path
+                    d="M0 0 C3.96 0.33 7.92 0.66 12 1 C8 3 8 3 5 4 C5.33 5.32 5.66 6.64 6 8 C3.69 7.67 1.38 7.34 -1 7 C-0.67 4.69 -0.34 2.38 0 0 Z"
+                    fill="#AB926A" transform="translate(32,20)" /><path
+                    d="M0 0 C0.66 0 1.32 0 2 0 C2 0.99 2 1.98 2 3 C3.80597656 2.98259766 3.80597656 2.98259766 5.6484375 2.96484375 C7.22395679 2.95546566 8.79947775 2.94636548 10.375 2.9375 C11.1690625 2.92912109 11.963125 2.92074219 12.78125 2.91210938 C18.7734375 2.88671875 18.7734375 2.88671875 21 4 C21 4.66 21 5.32 21 6 C21.66 6 22.32 6 23 6 C22.34 7.32 21.68 8.64 21 10 C20.67 9.01 20.34 8.02 20 7 C14.71755003 3.76236938 7.7670493 4.55727211 1.875 5.5 C1.25625 5.665 0.6375 5.83 0 6 C0 4.02 0 2.04 0 0 Z"
+                    fill="#B69A73" transform="translate(19,76)" /><path
+                    d="M0 0 C3.77076889 -0.05799124 7.54142334 -0.09359306 11.3125 -0.125 C12.38435547 -0.14175781 13.45621094 -0.15851562 14.56054688 -0.17578125 C15.58857422 -0.18222656 16.61660156 -0.18867188 17.67578125 -0.1953125 C18.62364502 -0.20578613 19.57150879 -0.21625977 20.5480957 -0.22705078 C23 0 23 0 26 2 C21.08733761 3.34718371 16.33905287 2.96401723 11.3125 2.6875 C10.0121582 2.63432617 10.0121582 2.63432617 8.68554688 2.58007812 C7.85732422 2.53689453 7.02910156 2.49371094 6.17578125 2.44921875 C5.42208252 2.41143311 4.66838379 2.37364746 3.8918457 2.3347168 C2 2 2 2 0 0 Z"
+                    fill="#BB9D74" transform="translate(79,21)" /><path
+                    d="M0 0 C-4 4 -4 4 -7.2578125 4.1953125 C-8.53398438 4.17210937 -9.81015625 4.14890625 -11.125 4.125 C-13.04699219 4.09792969 -13.04699219 4.09792969 -15.0078125 4.0703125 C-16.48894531 4.03550781 -16.48894531 4.03550781 -18 4 C-18 3.34 -18 2.68 -18 2 C-15.94077867 1.46635113 -13.87743893 0.94857811 -11.8125 0.4375 C-10.08966797 0.00244141 -10.08966797 0.00244141 -8.33203125 -0.44140625 C-5.11519907 -0.98068761 -3.10327217 -0.88247476 0 0 Z"
+                    fill="#BC9E70" transform="translate(111,52)" /><path
+                    d="M0 0 C0.99 0 1.98 0 3 0 C3 11.22 3 22.44 3 34 C2.34 33.67 1.68 33.34 1 33 C1.00523682 32.17798096 1.01047363 31.35596191 1.01586914 30.5090332 C1.03668393 26.77686327 1.04967455 23.04470558 1.0625 19.3125 C1.07506836 17.37213867 1.07506836 17.37213867 1.08789062 15.39257812 C1.09111328 14.14541016 1.09433594 12.89824219 1.09765625 11.61328125 C1.10289307 10.46641846 1.10812988 9.31955566 1.11352539 8.13793945 C1.01075807 5.29736223 0.65316416 2.75956208 0 0 Z"
+                    fill="#B39D7D" transform="translate(152,89)" /><path
+                    d="M0 0 C0.83265381 0.00523682 1.66530762 0.01047363 2.52319336 0.01586914 C3.42231445 0.0190918 4.32143555 0.02231445 5.24780273 0.02563477 C6.66609375 0.03820313 6.66609375 0.03820313 8.11303711 0.05102539 C9.06243164 0.05553711 10.01182617 0.06004883 10.98999023 0.06469727 C13.34356776 0.07652429 15.69702188 0.09300514 18.05053711 0.11352539 C18.05053711 0.44352539 18.05053711 0.77352539 18.05053711 1.11352539 C12.11053711 1.11352539 6.17053711 1.11352539 0.05053711 1.11352539 C-0.27946289 4.41352539 -0.60946289 7.71352539 -0.94946289 11.11352539 C-1.60946289 11.11352539 -2.26946289 11.11352539 -2.94946289 11.11352539 C-2.9763444 9.46777973 -2.99580412 7.82191126 -3.01196289 6.17602539 C-3.02356445 5.25950195 -3.03516602 4.34297852 -3.04711914 3.39868164 C-2.92474775 0.53519116 -2.85914507 0.16649999 0 0 Z"
+                    fill="#C0A077"
+                    transform="translate(21.949462890625,63.886474609375)" /><path
+                    d="M0 0 C0.66 0.33 1.32 0.66 2 1 C2.05800828 4.60409919 2.09359869 8.20807851 2.125 11.8125 C2.14175781 12.83666016 2.15851563 13.86082031 2.17578125 14.91601562 C2.18222656 15.89892578 2.18867187 16.88183594 2.1953125 17.89453125 C2.20578613 18.80050049 2.21625977 19.70646973 2.22705078 20.63989258 C2 23 2 23 0 26 C-0.76180386 23.71458843 -1.0630362 22.28156169 -0.53125 19.90625 C0.18627321 15.98097598 0.10587148 12.16766725 0.0625 8.1875 C0.05798828 7.39923828 0.05347656 6.61097656 0.04882812 5.79882812 C0.03711312 3.86585239 0.01917998 1.93291607 0 0 Z"
+                    fill="#B79C75" transform="translate(79,68)" /><path
+                    d="M0 0 C1.73830078 0.00966797 1.73830078 0.00966797 3.51171875 0.01953125 C6.3125 0.1875 6.3125 0.1875 7.3125 1.1875 C7.35313832 2.85367115 7.355221 4.52138095 7.3125 6.1875 C6.6525 5.8575 5.9925 5.5275 5.3125 5.1875 C5.3125 4.1975 5.3125 3.2075 5.3125 2.1875 C0.0325 2.1875 -5.2475 2.1875 -10.6875 2.1875 C-6.49969462 0.09359731 -4.5727371 -0.05632711 0 0 Z"
+                    fill="#A79669"
+                    transform="translate(147.6875,19.8125)" /><path
+                    d="M0 0 C0.33 0 0.66 0 1 0 C0.53444296 6.40140935 -1.14711836 11.26769829 -4 17 C-4.66 16.67 -5.32 16.34 -6 16 C-4.02 10.72 -2.04 5.44 0 0 Z"
+                    fill="#B59B75" transform="translate(38,87)" /><path
+                    d="M0 0 C2.9425963 0.30652045 5.34542308 0.67271154 8 2 C8 2.66 8 3.32 8 4 C9.65 4.33 11.3 4.66 13 5 C9.14507389 6.28497537 7.59653164 5.4052209 3.8125 4.0625 C2.72582031 3.68222656 1.63914063 3.30195312 0.51953125 2.91015625 C-0.31191406 2.60980469 -1.14335937 2.30945313 -2 2 C-1.34 1.34 -0.68 0.68 0 0 Z"
+                    fill="#B99E75" transform="translate(137,115)" /><path
+                    d="M0 0 C0 0.66 0 1.32 0 2 C-1.98 2.99 -1.98 2.99 -4 4 C-3.67 5.65 -3.34 7.3 -3 9 C-3.66 9 -4.32 9 -5 9 C-6.36741555 6.74778616 -7.04066478 5.47442242 -6.8125 2.8125 C-6.544375 2.214375 -6.27625 1.61625 -6 1 C-3 0 -3 0 0 0 Z"
+                    fill="#B79A73" transform="translate(96,44)" /><path
+                    d="M0 0 C2.97 0.99 5.94 1.98 9 3 C8.01 3.99 7.02 4.98 6 6 C5.01 6 4.02 6 3 6 C2.67 4.68 2.34 3.36 2 2 C1.34 2 0.68 2 0 2 C0 1.34 0 0.68 0 0 Z"
+                    fill="#B6986D" transform="translate(102,113)" /><path
+                    d="M0 0 C1.98 0 3.96 0 6 0 C5.01 0.33 4.02 0.66 3 1 C2.67 2.65 2.34 4.3 2 6 C2.66 6.33 3.32 6.66 4 7 C2.68 7.33 1.36 7.66 0 8 C0 5.36 0 2.72 0 0 Z"
+                    fill="#B6986D" transform="translate(90,102)" /><path
+                    d="M0 0 C0.66 0 1.32 0 2 0 C1.814375 0.78375 1.62875 1.5675 1.4375 2.375 C0.74037734 4.97089775 0.74037734 4.97089775 2 7 C-0.64 6.34 -3.28 5.68 -6 5 C-5.195625 4.360625 -4.39125 3.72125 -3.5625 3.0625 C-1.7249496 1.59396498 -1.7249496 1.59396498 0 0 Z"
+                    fill="#C2A072" transform="translate(44,24)" /><path
+                    d="M0 0 C-1.125 1.5625 -1.125 1.5625 -3 3 C-6.1875 2.6875 -6.1875 2.6875 -9 2 C-5.86501708 0.14223235 -3.62528568 -0.20140476 0 0 Z"
+                    fill="#B69D76" transform="translate(119,49)" /><path
+                    d="M0 0 C-0.33 0.99 -0.66 1.98 -1 3 C-4.63 3 -8.26 3 -12 3 C-7.74582052 0.87291026 -4.71473296 0 0 0 Z"
+                    fill="#BA9E76"
+                    transform="translate(140,44)" /></svg></div></div>
+            <div class="signal s1 mono">Bench / Active</div><div
+              class="signal s2 mono">Trust / Vouched</div>
+            <div class="signal s3 mono">Gap / Matched</div><div
+              class="signal s4 mono">Seat / Ready</div>
+          </div>
+        </div>
+        <div class="scrollcue mono">Scroll to meet the bench ↓</div>
+      </section>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Security Engineering <b>·</b></span><span>SOC &amp; Incident
+            Response <b>·</b></span><span>Security Architecture
+            <b>·</b></span><span>GRC &amp; Compliance <b>·</b></span><span>Cloud
+            Security <b>·</b></span><span>Threat Intelligence
+            <b>·</b></span><span>Application Security
+            <b>·</b></span><span>Identity &amp; Access <b>·</b></span>
+          <span>Security Engineering <b>·</b></span><span>SOC &amp; Incident
+            Response <b>·</b></span><span>Security Architecture
+            <b>·</b></span><span>GRC &amp; Compliance <b>·</b></span><span>Cloud
+            Security <b>·</b></span><span>Threat Intelligence
+            <b>·</b></span><span>Application Security
+            <b>·</b></span><span>Identity &amp; Access <b>·</b></span>
+        </div>
+      </div>
+      <section class="cream section" id="bench">
+        <div class="wrap">
+          <div class="bench-head">
+            <div><h2
+                class="section-title serif">Don't take our word for it.<br>Look
+                at the bench.</h2></div>
+            <p class="section-intro">Most firms ask you to trust that they've
+              got great people. We'd rather show you. Here's who's on the bench
+              right now — vetted, ready, waiting for the right match.</p>
+          </div>
+          <div class="bench-grid">
+            <article class="person"><div class="id mono">Profile 001 ·
+                Vetted</div><h3>Senior Security Engineer</h3><div
+                class="rule"></div><p>8 yrs · application security, secure
+                SDLC<br><br>Cloud infrastructure (AWS, Azure)</p><div
+                class="bottom mono"><span>Hybrid / Remote</span><b>Relocate
+                  ✓</b></div></article>
+            <article class="person"><div class="id mono">Profile 002 ·
+                Vetted</div><h3>SOC Analyst · Tier 3</h3><div
+                class="rule"></div><p>6 yrs · threat detection, incident
+                response<br><br>SIEM engineering, threat hunting</p><div
+                class="bottom mono"><span>Remote</span><b>Ready
+                  ✓</b></div></article>
+            <article class="person"><div class="id mono">Profile 003 ·
+                Vetted</div><h3>Security Architect</h3><div
+                class="rule"></div><p>12 yrs · zero-trust, enterprise
+                design<br><br>Financial services</p><div
+                class="bottom mono"><span>In-office</span><b>Relocate
+                  ✓</b></div></article>
+            <a class="person bench-cta" href="#"><h3>See who else is on the
+                roster</h3><span class="resource-arrow">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="wins" id="wins">
+        <div class="wrap wins-grid">
+          <div class="wins-copy"><h2
+              class="section-title serif">The numbers we're proud of.</h2><p>We
+              don't measure success by how many résumés we send. We measure it
+              by whether the right person gets the right seat.</p></div>
+          <div class="stats">
+            <div class="stat"><div class="stat-num" data-value="3">3–6</div><div
+                class="stat-label">Months is the industry wait.</div><div
+                class="stat-sub">We work from a warm bench instead.</div></div>
+            <div class="stat"><div class="stat-num"><span
+                  data-value="100">0</span>%</div><div class="stat-label">Vetted
+                before you see them.</div><div class="stat-sub">Every
+                professional earns the introduction.</div></div>
+            <div class="stat"><div class="stat-num">Few</div><div
+                class="stat-label">Names. Better names.</div><div
+                class="stat-sub">A shortlist we'd stake our name on.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="how section" id="how">
+        <div class="wrap how-layout">
+          <div><h2
+              class="section-title serif">We do the searching. Long before you
+              have to.</h2><div class="loop"><div class="loop-track"></div><div
+                class="loop-dot"></div></div></div>
+          <div class="steps">
+            <div class="step"><div class="step-no">01</div><div><h3>We keep the
+                  watch.</h3><p>We're sourcing and vetting security
+                  professionals every week, whether or not a role is open. The
+                  bench stays warm.</p></div></div>
+            <div class="step"><div class="step-no">02</div><div><h3>You tell us
+                  the gap.</h3><p>A seat opens. You tell us the role, the team,
+                  the stakes. We already know who fits.</p></div></div>
+            <div class="step"><div class="step-no">03</div><div><h3>You choose
+                  from the vetted few.</h3><p>No résumé avalanche. A short list
+                  of people we'd trust with our own company. You pick. We handle
+                  the rest.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="resources section" id="resources">
+        <div class="wrap">
+          <h2
+            class="section-title serif">Free things worth your time.</h2>
+          <p class="section-intro" style="color:#9fa8bc">No gate, no games —
+            just your email and it's yours. Salary guides, hiring playbooks, an
+            ATS-ready résumé template, and insights on what's actually happening
+            in cyber hiring.</p>
+          <div class="resource-list">
+            <a class="resource" href="#"><b class="resource-arrow">↗</b><h3>Salary
+                Guide</h3><span>Hiring intelligence</span></a>
+            <a class="resource" href="#"><b class="resource-arrow">↗</b><h3>Cyber Hiring
+                Playbook</h3><span>For security leaders</span></a>
+            <a class="resource" href="#"><b class="resource-arrow">↗</b><h3>ATS Résumé
+                Template</h3><span>For talent</span></a>
+            <a class="resource" href="#"><b class="resource-arrow">↗</b><h3>Market
+                Insights</h3><span>What's moving</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="about section" id="about">
+        <div class="wrap about-grid">
+          <div class="about-copy"><h2
+              class="section-title serif">Custos means guardian. We built the
+              firm to earn the name.</h2><p>We're a boutique cybersecurity
+              staffing firm — which is a fancy way of saying we do one thing and
+              refuse to do it badly. We don't fill seats for the sake of it. We
+              keep a bench of people we know, vetted, and would put our name
+              behind, then we match them to the teams who can't afford to get
+              security hiring wrong.</p><div class="quote">“The people who
+              protect your company should be chosen with the same care they'll
+              bring to protecting it.”<div class="quote-author" style="margin-top:15px;font-size:14px;color:var(--gold);font-weight:600">— Mekedlawit E. Jackson</div></div></div>
+          <div class="portrait"><img src="Client Image.jpeg" alt="Mekedlawit E. Jackson" style="width:100%;height:100%;object-fit:cover"></div>
+        </div>
+      </section>
+
+        <section class="final" id="connect">
+          <div class="wrap">
+            <h2 class="section-title serif">You've seen the bench.<br>You've
+              seen
+              how it works.</h2>
+            <p>Here's what it's like on the other side of a placement.</p>
+            <div class="testimonials">
+              <article class="t-card"><div class="t-mark">“</div><p>Company
+                  testimonial placeholder — real quote once
+                  cleared.</p><small>[Title, Sector]</small></article>
+              <article class="t-card"><div class="t-mark">“</div><p>Talent
+                  testimonial placeholder — real quote once
+                  cleared.</p><small>[Placed professional,
+                  role]</small></article>
+            </div>
+            <h2 class="section-title serif">So, the seat's still
+              open.</h2><p>Let's fill it right. One call, and you'll see the
+              difference a real bench makes.</p>
+            <div class="hero-actions" style="justify-content:center"><a
+                class="btn gold" href="#">Let's connect</a><a class="btn line"
+                href="#">For Talent →</a></div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="wrap footer-grid">
+          <div>
+            <div style="margin-bottom: 20px;">
+              <a class="nav-logo" href="#" aria-label="Custos Group"><svg
+                  id="lg_lockup" data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 1264.03 112.02">
+                  <g>
+                    <path class="lockup-a"
+                      d="M745.02,56.94c0-31.94,23.15-56.63,56.31-56.63,18.51,0,23.77,6.64,33.8,2.16l4.62,30.71c-9.88-10.49-20.83-17.28-35.64-17.28-19.75,0-35.03,14.66-35.03,41.19,0,24.23,15.73,39.5,36.72,39.5,6.02,0,12.19-.92,17.9-2.93v-16.35c0-10.34-1.24-14.19-5.71-20.22h31.94c-4.48,6.48-5.4,11.57-5.4,22.07v4.48c0,6.94,1.24,12.04,3.08,16.67-12.35,6.64-28.7,11.72-44.59,11.72-33.49,0-58.02-21.75-58.02-55.08Z" />
+                    <path class="lockup-a"
+                      d="M868.1,88.56V23.3c0-10.49-2-14.66-7.56-21.29h45.98c24.69,0,39.35,12.04,39.35,31.01,0,13.58-8.34,24.07-20.83,28.86l19.75,32.09c4.48,7.25,8.48,12.35,12.65,16.05h-28.08l-26.08-44.28h-12.96v22.83c0,10.49,1.7,15.12,6.95,21.45h-36.11c5.24-6.32,6.94-10.96,6.94-21.45ZM890.32,16.66v35.18h11.88c13.11,0,21.45-6.48,21.45-18.05,0-10.8-8.03-17.13-21.14-17.13h-12.19Z" />
+                    <path class="lockup-a"
+                      d="M1009.26,112.02c-30.55,0-55.23-22.83-55.23-56.01S979.02,0,1009.89,0s55.23,22.83,55.23,56.01-24.99,56.01-55.86,56.01ZM1009.26,96.59c17.75,0,31.48-14.19,31.48-40.42s-13.43-40.42-30.86-40.42-31.48,14.19-31.48,40.42,13.58,40.42,30.86,40.42Z" />
+                    <path class="lockup-a"
+                      d="M1076.18,68.46V22.17c0-10.49-1.7-15.12-6.95-21.45h36.57c-5.25,6.32-6.95,10.96-6.95,21.45v45.82c0,17.59,10.64,26.54,24.68,26.54s25-8.8,25-26.85V22.17c0-10.49-1.86-14.97-7.41-21.45h31.64c-5.56,6.48-7.41,10.96-7.41,21.45v44.59c0,28.7-18.36,43.98-44.59,43.98s-44.59-15.43-44.59-42.28Z" />
+                    <path class="lockup-a"
+                      d="M1185.79,87.29V22.17c0-10.49-2-14.81-7.56-21.45h44.75c25.45,0,41.04,13.27,41.04,32.87,0,20.67-16.82,33.95-42.27,33.95h-13.27v19.75c0,10.49,1.69,14.97,7.4,21.45h-37.03c5.24-6.32,6.94-10.96,6.94-21.45ZM1208.48,15.38v38.11h10.96c13.57,0,22.07-7.25,22.07-19.13s-8.34-18.98-21.75-18.98h-11.27Z" />
+                  </g>
+                  <g>
+                    <path class="lockup-a"
+                      d="M54.46.31c18.2,0,24.38,6.64,33.79,2.16l4.48,30.71c-9.41-10.03-19.44-17.28-33.63-17.28-20.99,0-35.03,16.66-35.03,40.42,0,25.77,16.67,40.27,35.95,40.27,12.8,0,23.6-5.55,32.87-12.19l-1.69,17.43c-8.95,6.17-21.61,10.18-35.03,10.18C24.23,112.02,0,89.34,0,57.09S23.6.31,54.46.31Z" />
+                    <path class="lockup-a"
+                      d="M105.97,69.74V23.45c0-10.49-1.7-15.12-6.95-21.45h36.57c-5.25,6.32-6.95,10.96-6.95,21.45v45.82c0,17.59,10.64,26.54,24.68,26.54s25-8.8,25-26.85V23.45c0-10.49-1.86-14.97-7.41-21.45h31.64c-5.56,6.48-7.41,10.96-7.41,21.45v44.59c0,28.7-18.36,43.98-44.59,43.98s-44.59-15.43-44.59-42.28Z" />
+                    <path class="lockup-a"
+                      d="M318.1,88.56V16.35h-7.87c-10.8,0-18.67,3.08-29.78,11.72l4.16-26.07h89.65l4.16,26.07c-11.27-8.64-18.98-11.72-29.78-11.72h-7.87v72.21c0,10.49,1.85,14.97,7.4,21.45h-37.49c5.56-6.48,7.4-10.96,7.4-21.45Z" />
+                    <path class="lockup-a"
+                      d="M431.33,112.02c-30.55,0-55.23-22.83-55.23-56.01S401.09,0,431.95,0s55.23,22.83,55.23,56.01-24.99,56.01-55.86,56.01ZM431.33,96.59c17.75,0,31.48-14.19,31.48-40.42s-13.43-40.42-30.86-40.42-31.48,14.19-31.48,40.42,13.58,40.42,30.86,40.42Z" />
+                    <path class="lockup-a"
+                      d="M497.94,110.17l-5.4-28.39c15.43,11.73,27,16.82,38.11,16.82,8.64,0,15.9-5.4,15.59-14.04-.31-22.22-52.16-15.58-52.77-53.08-.61-17.43,12.8-30.86,32.71-30.86,13.58,0,21.91,6.17,30.71,1.08l4.79,26.39c-12.35-8.64-23.91-14.04-33.33-14.04-8.64,0-14.04,5.56-14.04,13.27.62,23.3,52.3,15.27,53.24,52,.3,18.98-14.66,32.09-36.26,32.09-15.59,0-23.77-7.25-33.33-1.23Z" />
+                    <path class="lockup-a"
+                      d="M210.46,110.17l-5.4-28.39c15.43,11.73,27,16.82,38.11,16.82,8.64,0,15.9-5.4,15.59-14.04-.31-22.22-52.16-15.58-52.77-53.08-.61-17.43,12.8-30.86,32.71-30.86,13.58,0,26.7,6.17,35.49,1.08v26.39c-12.35-8.64-23.91-14.04-33.33-14.04-8.64,0-14.04,5.56-14.04,13.27.62,23.3,52.3,15.27,53.24,52,.3,18.98-14.66,32.09-36.26,32.09-15.59,0-23.77-7.25-33.33-1.23Z" />
+                  </g>
+                  <path class="lockup-b"
+                    d="M714.37,109.83v-4.62l-56.23-27.31c.74-1.64,1.42-3.34,1.98-5.04l54.24,18.01v-29.2l-51.53-5.72c-.06-1.42.13-4.86-.04-6.28l51.57-.63v-30.09l-54.12,12.13c-.68-1.25-2.06-6.17-2.85-7.3l56.98-18.03V1.12h-108.77v4.62c22.65,3.57,43.31,23.35,43.31,46.62,0,4.87-.74,9.57-2.15,13.93l-12.17-17.95v-.62l6.17-3.45v-4.58h-45.52v15.06c2.38-1.36,5.1-2.09,8.1-2.09,3.79,0,7.19,1.25,9.97,3.34v.06l-7.76,21.63.06,32.16h108.77ZM605.66,98.9" />
+                </svg></a>
+            </div>
+
+            <div class="footer-tag">Cybersecurity
+              talent, vetted before you need it.</div></div>
+          <div><h4>Explore</h4><ul><li><a href="#bench">The Bench</a></li><li><a
+                  href="#how">How It Works</a></li><li><a href="#wins">Our
+                  Wins</a></li><li><a href="#about">About</a></li><li><a
+                  href="#resources">Resources</a></li></ul></div>
+          <div><h4>Contact</h4><ul><li>info@custos-group.com</li><li>(404)
+                698-8084</li><li>Atlanta, GA</li><li>LinkedIn</li></ul></div>
+        </div>
+        <div class="wrap legal"><span>© 2026 Custos Group. All rights
+            reserved.</span><span>Privacy · Terms · Accessibility</span></div>
+      </footer>
+
+      <script>
+gsap.registerPlugin(ScrollTrigger);
+
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(!reduce){
+  // Hero: deliberate, editorial entrance
+  const hero = gsap.timeline({defaults:{ease:"power3.out"}});
+  hero.from(".nav",{y:-30,opacity:0,duration:.7})
+      .from(".hero h1",{y:55,opacity:0,duration:1.05},"-=.2")
+      .from(".hero-copy,.hero-actions,.hero-meta",{y:24,opacity:0,stagger:.1,duration:.65},"-=.55")
+      .from(".orbit",{scale:.75,opacity:0,duration:1.2},"-=1")
+      .from(".visual-core",{scale:.6,opacity:0,duration:.8},"-=.7")
+      .from(".signal",{y:15,opacity:0,stagger:.08,duration:.45},"-=.45");
+
+  // Persistent orbital motion
+  gsap.to(".orbit",{rotation:"+=360",duration:35,ease:"none",repeat:-1});
+  gsap.to(".orbit.two",{rotation:"-=360",duration:46,ease:"none",repeat:-1});
+  gsap.to(".visual-core",{scale:1.035,duration:2.5,ease:"sine.inOut",repeat:-1,yoyo:true});
+
+  // Generic section reveal
+  gsap.utils.toArray(".section-title,.section-intro,.bench-grid,.stats,.step,.resource,.about-copy,.portrait").forEach(el=>{
+    gsap.from(el,{
+      y:55,opacity:0,duration:.9,ease:"power3.out",
+      scrollTrigger:{trigger:el,start:"top 82%",once:true}
+    });
+  });
+
+  // Bench cards stagger
+  gsap.from(".person",{opacity:0,stagger:.14,duration:.85,ease:"power3.out",
+    scrollTrigger:{trigger:".bench-grid",start:"top 78%",once:true}
+  });
+
+  // Testimonial cards stagger
+  gsap.from(".t-card",{y:60,opacity:0,stagger:.75,duration:1.5,ease:"power3.out",
+    scrollTrigger:{trigger:".testimonials",start:"top 80%",once:true}
+  });
+
+  // Stats count-up
+  document.querySelectorAll("[data-value]").forEach(el=>{
+    const target=Number(el.dataset.value);
+    const obj={v:0};
+    gsap.to(obj,{v:target,duration:1.7,ease:"power2.out",
+      scrollTrigger:{trigger:el,start:"top 85%",once:true},
+      onUpdate:()=>el.textContent=Math.round(obj.v)
+    });
+  });
+
+  // Step number movement
+  gsap.utils.toArray(".step").forEach((step,i)=>{
+    gsap.from(step.querySelector(".step-no"),{
+      x:-30,opacity:0,duration:.6,
+      scrollTrigger:{trigger:step,start:"top 82%",once:true}
+    });
+  });
+
+  // Loop indicator follows the process
+  gsap.to(".loop-dot",{left:"85%",duration:3.2,ease:"power1.inOut",repeat:-1,yoyo:true});
+  gsap.from(".loop-track",{scaleX:0,transformOrigin:"left center",duration:1,
+    scrollTrigger:{trigger:".loop",start:"top 85%",once:true}
+  });
+
+  // Resource hover accent
+  document.querySelectorAll(".resource").forEach(item=>{
+    item.addEventListener("mouseenter",()=>gsap.to(item.querySelector(".resource-arrow"),{x:7,duration:.25}));
+    item.addEventListener("mouseleave",()=>gsap.to(item.querySelector(".resource-arrow"),{x:0,duration:.25}));
+  });
+
+  // Subtle parallax on large editorial objects
+  gsap.to(".hero-visual",{y:70,scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:1}});
+}
+</script>
+    </body>
+  </html>
